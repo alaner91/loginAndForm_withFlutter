@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cuestionario_ejemplo/database_helper.dart';
 
 class CuestionarioPage extends StatefulWidget {
   @override
@@ -6,6 +7,7 @@ class CuestionarioPage extends StatefulWidget {
 }
 
 class _CuestionarioPageState extends State<CuestionarioPage> {
+  TextEditingController respuestaController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,6 +64,7 @@ class _CuestionarioPageState extends State<CuestionarioPage> {
                 Padding(
                   padding: EdgeInsets.only(top: 50.0),
                   child: TextFormField(
+                    controller: respuestaController,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText:
@@ -70,10 +73,25 @@ class _CuestionarioPageState extends State<CuestionarioPage> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 20.0),
+                ),
+                SizedBox(
+                  width: 300,
+                  height: 45,
                   child: ElevatedButton(
-                    style: ButtonStyle(),
-                    onPressed: () {},
-                    child: Text('ENVIAR RESPUESTAS'),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                    ),
+                    onPressed: () async {
+                      int i = await DatabaseHelper.instance.insert({
+                        DatabaseHelper.columnName: respuestaController.text
+                      });
+
+                      print('Estoy guardando $i');
+                    },
+                    child: Text(
+                      'GUARDAR RESPUESTAS',
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ),
                 )
               ],

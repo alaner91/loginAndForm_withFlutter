@@ -1,4 +1,4 @@
-import 'package:cuestionario_ejemplo/view_cuestionario.dart';
+import 'package:cuestionario_ejemplo/select_exam.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
@@ -35,10 +35,16 @@ class _HomePageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,
-        title: Text('Ejemplo Cuestionario Ibero'),
+        title: Text(
+          'Ejemplo Cuestionario Ibero',
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 20,
+          ),
+        ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(150.0),
+        padding: EdgeInsets.only(left: 500.0, right: 500.0),
         child: Center(
           child: Form(
             autovalidateMode: AutovalidateMode.always,
@@ -54,31 +60,57 @@ class _HomePageState extends State<LoginPage> {
                   ),
                 ),
                 TextFormField(
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: "Correo Electrónico"),
-                    validator: MultiValidator([
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.all(12),
+                    border: OutlineInputBorder(),
+                    labelText: "Correo Electrónico",
+                    suffixIcon: Icon(
+                      Icons.visibility_off_outlined,
+                      color: Colors.blueGrey[200],
+                    ),
+                  ),
+                  validator: MultiValidator(
+                    [
                       RequiredValidator(errorText: 'Correo requerido'),
                       EmailValidator(errorText: 'No es un correo valido'),
-                    ])),
+                    ],
+                  ),
+                ),
                 Padding(
                   padding: EdgeInsets.only(top: 50.0),
                   child: TextFormField(
                       decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Contraseña'),
+                        border: OutlineInputBorder(),
+                        labelText: 'Contraseña',
+                        suffixIcon: Icon(
+                          Icons.lock,
+                          color: Colors.blueGrey[200],
+                        ),
+                      ),
                       validator: validatepass),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 40.0),
+                ),
+                SizedBox(
+                  width: 300,
+                  height: 40,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                    ),
                     onPressed: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CuestionarioPage()));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => GoQuestions(),
+                        ),
+                      );
                     },
-                    child: Text('Entrar'),
+                    child: Text(
+                      'Entrar',
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ),
                 )
               ],
