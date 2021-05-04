@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cuestionario_ejemplo/database_helper.dart';
 
 class CuestionarioPage extends StatefulWidget {
   @override
@@ -81,13 +80,7 @@ class _CuestionarioPageState extends State<CuestionarioPage> {
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,
                     ),
-                    onPressed: () async {
-                      int i = await DatabaseHelper.instance.insert({
-                        DatabaseHelper.columnName: respuestaController.text
-                      });
-
-                      print('Estoy guardando $i');
-                    },
+                    onPressed: () async {},
                     child: Text(
                       'GUARDAR RESPUESTAS',
                       style: TextStyle(fontSize: 18),

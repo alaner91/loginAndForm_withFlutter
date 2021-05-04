@@ -32,6 +32,21 @@ dependencies:
   sqflite:
   path_provider:
 
+  # Integracion con Firebase
+  firebase_core: ^1.1.0
+  cloud_firestore: ^1.0.7
+  firebase_storage: ^8.0.5
+
+  #google sign in
+  firebase_auth:
+  google_sign_in:
+
+  #State managment
+  provider:
+
+  #icon of google
+  font_awesome_flutter:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
